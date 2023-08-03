@@ -73,3 +73,7 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "devise", "~> 4.9"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
