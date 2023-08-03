@@ -1,3 +1,6 @@
 class Habit < ApplicationRecord
   belongs_to :user
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :description, length: { maximum: 500 }
+  validates :type, inclusion: { in: %w[daily weekly monthly], message: '%<value>s is not a valid type' }
 end
