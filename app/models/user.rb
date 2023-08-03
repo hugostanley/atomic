@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable,
     :omniauthable, omniauth_providers: [:google_oauth2]
+  has_many :habits
 
   def self.from_omniauth(auth)
     user = User.where(email: auth.info.email).first
