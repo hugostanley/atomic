@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+.previewer-load {
+  animation: fadeIn 2000ms ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
