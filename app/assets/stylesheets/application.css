@@ -27,3 +27,29 @@
     opacity: 1;
   }
 }
+
+.open-form {
+  animation: slideUp 500ms ease forwards;
+}
+
+.close-form {
+  animation: slideDown 500ms ease forwards;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(40rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(40rem);
+  }
+}

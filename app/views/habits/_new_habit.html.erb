@@ -1,9 +1,9 @@
-<div class="z-10 fixed p-2 rounded-full bg-zinc-900 w-max bottom-8 right-8 shadow-lg drop-shadow-xl cursor-pointer">
-  <%= render partial: 'shared/icons/add', locals: {className: 'fill-white'} %>
-</div>
-<% if true %>
-  <div class="z-20 fixed inset-0 bg-gray-300 bg-opacity-75 flex items-end">
-    <div class="w-full rounded-t-[1.5rem] h-[50%] bg-white shadow-xl p-4">
+<div data-controller='new-habit-form'>
+  <div class="z-10 fixed p-2 rounded-full bg-zinc-900 w-max bottom-8 right-8 shadow-lg drop-shadow-xl cursor-pointer" data-new-habit-form-target="newHabitBtn" data-action="click->new-habit-form#openForm">
+    <%= render partial: 'shared/icons/add', locals: {className: 'fill-white'} %>
+  </div>
+  <div data-new-habit-form-target="bgOverlay" class="z-20 fixed inset-0 bg-gray-300 bg-opacity-75 flex items-end hidden" data-action="click->new-habit-form#closeForm">
+    <div class="w-full rounded-t-[1.5rem] h-[50%] bg-white shadow-xl p-4 open-form" data-new-habit-form-target="popUpForm" >
       <div class="w-full">
       <%= form_with url: '', model: Habit.new do |f| %>
         <%= f.text_field :name, class: 'text-lg w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Habit name' %>
@@ -16,4 +16,4 @@
       </div>
     </div>
   </div>
-<% end %>
+</div>
