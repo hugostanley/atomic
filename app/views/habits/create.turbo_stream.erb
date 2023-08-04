@@ -1,1 +1,1 @@
-<%= turbo_stream.append "user_#{@habit.user_id}_habits", partial: 'habit', locals: {habit: @habit} %>
+<%= turbo_stream.append "user_#{@habit.user_id}_#{@habit.habit_type}_habits", partial: 'habit', locals: {habit: @habit} %>
