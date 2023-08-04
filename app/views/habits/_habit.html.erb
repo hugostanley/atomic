@@ -1,5 +1,15 @@
-<div>
-  <span><%= habit.name %></span>
-  <span><%= habit.description %></span>
-  <span><%= habit.habit_type %></span>
+<div class="p-4 w-full border border-slate-300 rounded-lg shadow-sm flex justify-between">
+  <span class="font-medium text-xl"><%= habit.name %></span>
+  <div>
+    <span>0/<%= habit.frequency %></span>
+    <span>
+      <% if habit.habit_type == 'daily' %>
+        <%= "today" %>
+      <% elsif habit.habit_type == 'weekly' %>
+        <%= "this week" %>
+      <% else %>
+        <%= "this month" %>
+      <% end %>
+    </span>
+  </div>
 </div>

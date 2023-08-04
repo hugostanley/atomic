@@ -10,7 +10,7 @@
         <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%B') %></h1>
       <% end %>
     </section>
-    <section id="<%= dom_id(current_user) %>_<%= @mode %>_habits" class="previewer-load">
+    <section id="<%= dom_id(current_user) %>_<%= @mode %>_habits" class="previewer-load flex flex-col gap-2 py-2">
       <% @habits.each do |item| %>
         <% if item.habit_type == @mode %>
           <%= render partial: 'habit', locals: {habit: item} %>
