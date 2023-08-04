@@ -2,8 +2,17 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="new-habit-form"
 export default class extends Controller {
-  static targets = ['newHabitBtn', 'bgOverlay', 'popUpForm']
+  static targets = ['newHabitBtn', 'bgOverlay', 'popUpForm', 'submitBtn',  'form']
   connect() {
+  }
+
+  submit(){
+    this.formTarget.requestSubmit()
+  }
+
+  reset(){
+    this.formTarget.reset()
+    this.closeForm({target: this.bgOverlayTarget})
   }
 
   openForm() {
@@ -12,7 +21,7 @@ export default class extends Controller {
     this.popUpFormTarget.classList.add('open-form')
   }
 
-  closeForm(e) {
+  closeForm(e = {}) {
     if (e.target == this.bgOverlayTarget) {
       this.popUpFormTarget.classList.remove('open-form')
       this.popUpFormTarget.classList.add('close-form')
