@@ -1,0 +1,19 @@
+<div class="z-10 fixed p-2 rounded-full bg-zinc-900 w-max bottom-8 right-8 shadow-lg drop-shadow-xl cursor-pointer">
+  <%= render partial: 'shared/icons/add', locals: {className: 'fill-white'} %>
+</div>
+<% if true %>
+  <div class="z-20 fixed inset-0 bg-gray-300 bg-opacity-75 flex items-end">
+    <div class="w-full rounded-t-[1.5rem] h-[50%] bg-white shadow-xl p-4">
+      <div class="w-full">
+      <%= form_with url: '', model: Habit.new do |f| %>
+        <%= f.text_field :name, class: 'text-lg w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Habit name' %>
+        <%= f.text_area :name, class: 'w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Description' %>
+        <div class="flex w-full gap-2">
+          <%= f.number_field :frequency, placeholder: 'Frequency', class: 'rounded-xl border-gray-200' %>
+          <%= f.select :type, ['Daily', 'Weekly', 'Monthly'], {}, {class: 'border-gray-200 outline-none focus:ring-0 rounded-xl'} %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
