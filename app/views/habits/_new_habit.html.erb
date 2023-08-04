@@ -5,15 +5,20 @@
   <div data-new-habit-form-target="bgOverlay" class="z-20 fixed inset-0 bg-gray-300 bg-opacity-75 flex items-end hidden" data-action="click->new-habit-form#closeForm">
     <div class="w-full rounded-t-[1.5rem] h-[50%] bg-white shadow-xl p-4 open-form" data-new-habit-form-target="popUpForm" >
       <div class="w-full">
-      <%= form_with url: '', model: Habit.new do |f| %>
-        <%= f.text_field :name, class: 'text-lg w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Habit name' %>
-        <%= f.text_area :name, class: 'w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Description' %>
-        <div class="flex w-full gap-2">
-          <%= f.number_field :frequency, placeholder: 'Frequency', class: 'rounded-xl border-gray-200' %>
-          <%= f.select :type, ['Daily', 'Weekly', 'Monthly'], {}, {class: 'border-gray-200 outline-none focus:ring-0 rounded-xl'} %>
-        </div>
-      <% end %>
+        <%= form_with url: create_habit_path, model: Habit.new, method: :post, data: {new_habit_form_target: 'form', action: 'turbo:submit-start->new-habit-form#reset'} do |f| %>
+          <%= f.text_field :name, class: 'text-lg w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Habit name' %>
+          <%= f.text_area :description, class: 'w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Description' %>
+          <div class="flex w-full gap-2">
+            <%= f.number_field :frequency, placeholder: 'Frequency', class: 'rounded-xl border-gray-200' %>
+            <%= f.select :habit_type, ['Daily', 'Weekly', 'Monthly'], {}, {class: 'border-gray-200 outline-none focus:ring-0 rounded-xl'} %>
+          </div>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <button type="submit" class="p-2 rounded-full bg-zinc-900 w-max shadow-lg drop-shadow-xl cursor-pointer fixed bottom-8 right-8" data-new-habit-form-target="submitBtn">
+            <%= render partial: 'shared/icons/arrow_up', locals: {className: 'fill-white'} %>
+          </button>
+        <% end %>
       </div>
+
     </div>
   </div>
 </div>
