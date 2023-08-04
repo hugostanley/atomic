@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root "dashboard#index"
+  root 'habits#index'
+  get '/:view', to: 'habits#previewer', defaults: { view: 'daily' }, as: 'previewer'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
