@@ -2,17 +2,19 @@
 <main class="px-4">
   <%= turbo_frame_tag "home_previewer" do %>
     <section>
-        <% if @mode == 'daily' %>
-          <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%A') %></h1>
-        <% elsif @mode == 'weekly' %>
-          <h1 class="text-4xl font-bold previewer-load">Week <%= get_week_number %></h1>
-        <% else %>
-          <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%B') %></h1>
-        <% end %>
+      <% if @mode == 'daily' %>
+        <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%A') %></h1>
+      <% elsif @mode == 'weekly' %>
+        <h1 class="text-4xl font-bold previewer-load">Week <%= get_week_number %></h1>
+      <% else %>
+        <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%B') %></h1>
+      <% end %>
     </section>
-    <section id="<%= dom_id(current_user) %>_habits">
+    <section id="<%= dom_id(current_user) %>_<%= @mode %>_habits" class="previewer-load">
       <% @habits.each do |item| %>
-        <%= render partial: 'habit', locals: {habit: item} %>
+        <% if item.habit_type == @mode %>
+          <%= render partial: 'habit', locals: {habit: item} %>
+        <% end %>
       <% end %>
     </section>
   <% end %>
