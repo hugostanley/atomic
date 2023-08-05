@@ -2,7 +2,8 @@ class HabitsController < ApplicationController
   before_action :authenticate_user!
   before_action :instantiate_data
 
-  def index; end
+  def index
+  end
 
   def previewer
     @mode = params[:view]
@@ -25,19 +26,24 @@ class HabitsController < ApplicationController
 
   def log_habit
     habit = Habit.find_by(id: params[:id])
+    @habit_log = HabitLog.new(user_id: habit.user_id, habit_id: habit.id)
     amount = 0
 
-    if habit.habit_type == 'daily'
-      amount = habit.logs_for_today.length
-    elsif habit.habit_type == 'weekly'
-      amount = habit.logs_for_this_week.length
+    amount = if habit.habit_type == "daily"
+      habit.logs_for_today.length
+    elsif habit.habit_type == "weekly"
+      habit.logs_for_this_week.length
     else
-      amount = habit.logs_for_this_month.length
+      habit.logs_for_this_month.length
     end
 
-    return unless amount < habit.frequency
-
-    HabitLog.create(user_id: habit.user_id, habit_id: habit.id)
+    respond_to do |format|
+      if amount < habit.frequency
+        format.turbo_stream if @habit_log.save
+      else
+        format.html {redirect_to previewer_path("daily")}
+      end
+    end
   end
 
   private
