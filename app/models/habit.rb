@@ -20,7 +20,8 @@ class Habit < ApplicationRecord
   end
 
   # GET how many is accomplished this month
-  def logs_for_this_mongth
+  def logs_for_this_month
+    habit_logs.where(created_at: Time.now.beginning_of_month..Time.now.end_of_month)
   end
 
   private
