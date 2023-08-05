@@ -2,8 +2,7 @@ class HabitsController < ApplicationController
   before_action :authenticate_user!
   before_action :instantiate_data
 
-  def index
-  end
+  def index; end
 
   def previewer
     @mode = params[:view]
@@ -22,6 +21,23 @@ class HabitsController < ApplicationController
       # located at: views/habits/create.turbo_stream.erb
       format.turbo_stream if @habit.save
     end
+  end
+
+  def log_habit
+    habit = Habit.find_by(id: params[:id])
+    amount = 0
+
+    if habit.habit_type == 'daily'
+      amount = habit.logs_for_today
+    elsif habit.habit_type == 'weekly'
+      amount = habit.logs_for_this_week
+    else
+      p 'monthly'
+    end
+
+    return unless amount.length < habit.frequency
+
+    HabitLog.create(user_id: habit.user_id, habit_id: habit.id)
   end
 
   private
