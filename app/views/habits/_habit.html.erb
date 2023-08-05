@@ -1,15 +1,17 @@
-<div class="p-4 w-full border border-slate-300 rounded-lg shadow-sm flex justify-between">
-  <span class="font-medium text-xl"><%= habit.name %></span>
-  <div>
-    <span>0/<%= habit.frequency %></span>
-    <span>
+<%= button_to log_habit_path(habit.id), class: 'w-full' do %>
+  <div class="p-4 w-full border border-slate-300 rounded-lg shadow-sm flex justify-between">
+    <span class="font-medium text-xl"><%= habit.name %></span>
+    <div>
       <% if habit.habit_type == 'daily' %>
-        <%= "today" %>
+        <span><%= habit.logs_for_today.length %> / <%= habit.frequency %></span>
+        <span>today</span>
       <% elsif habit.habit_type == 'weekly' %>
-        <%= "this week" %>
+        <span><%= habit.logs_for_today.length %> / <%= habit.frequency %></span>
+        <span>this week</span>
       <% else %>
-        <%= "this month" %>
+        <span>0 / <%= habit.frequency %></span>
+        <span>this month</span>
       <% end %>
-    </span>
+    </div>
   </div>
-</div>
+<% end %>
