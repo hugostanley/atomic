@@ -1,6 +1,9 @@
 module HabitsHelper
   def get_week_number(date = Time.now)
-    first_day_of_month = Time.new(date.year, date.month, 1)
-    (date.day - first_day_of_month.day) / 7 + 1
+    # The day today should be divided with 7
+    #
+    # "How many 7 days are there in the day today?" 
+    return 4 if date.day > 28
+    (date.day / 7.0).ceil
   end
 end
