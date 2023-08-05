@@ -28,14 +28,14 @@ class HabitsController < ApplicationController
     amount = 0
 
     if habit.habit_type == 'daily'
-      amount = habit.logs_for_today
+      amount = habit.logs_for_today.length
     elsif habit.habit_type == 'weekly'
-      amount = habit.logs_for_this_week
+      amount = habit.logs_for_this_week.length
     else
-      p 'monthly'
+      amount = habit.logs_for_this_month.length
     end
 
-    return unless amount.length < habit.frequency
+    return unless amount < habit.frequency
 
     HabitLog.create(user_id: habit.user_id, habit_id: habit.id)
   end
