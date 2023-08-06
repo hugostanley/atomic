@@ -1,16 +1,18 @@
 <div id="user_<%= habit.user_id %>_habit_<%= habit.id %>">
-  <%= button_to log_habit_path(habit.id), data: {controller: 'authenticity habit-block', habit_block_amount_value: amount, habit_block_frequency_value: habit.frequency}, class: 'w-full' do %>
-    <div class="p-4 w-full border border-slate-300 rounded-lg shadow-sm flex justify-between" data-controller="habit-block">
-      <span class="font-medium text-xl"><%= habit.name %></span>
-      <div>
-        <span data-habit-block-parm><%= amount %> / <%= habit.frequency %></span>
-        <% if habit.habit_type == 'daily' %>
-          <span>today</span>
-        <% elsif habit.habit_type == 'weekly' %>
-          <span>this week</span>
-        <% else %>
-          <span>this month</span>
-        <% end %>
+  <%= button_to log_habit_path(habit.id), data: {controller: 'authenticity habit-block', habit_block_amount_value: amount, habit_block_frequency_value: habit.frequency, action: 'habit-block#fillColor'}, class: 'w-full' do %>
+    <div class="p-4 w-full border border-slate-300 rounded-lg shadow-sm flex justify-between relative" data-habit-block-target="habitDiv">
+      <span class="font-medium text-xl z-50"><%= habit.name %></span>
+      <div class="z-50">
+        <span class=""><%= amount %> / <%= habit.frequency %></span>
+        <span class="">
+          <% if habit.habit_type == 'daily' %>
+            <%= 'today' %>
+          <% elsif habit.habit_type == 'weekly' %>
+            <%= 'this week' %>
+          <% else %>
+            <%= 'this month' %>
+          <% end %>
+        </span>
       </div>
     </div>
   <% end %>
