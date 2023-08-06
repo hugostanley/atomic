@@ -1,2 +1,1 @@
-<% p @habit_log %>
-<%= turbo_stream.replace "user_#{@habit_log.user_id}_habit_#{@habit_log.habit_id}", partial: 'habit', locals: {habit: @habit_log.habit} %>
+<%= turbo_stream.replace "user_#{@habit_log.user_id}_habit_#{@habit_log.habit_id}", partial: 'habit', locals: {habit: @habit_log.habit, amount: @amount} %>
