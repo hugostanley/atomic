@@ -1,9 +1,9 @@
 class Habit < ApplicationRecord
   belongs_to :user
-  validates :name, presence: true, length: {maximum: 100}
-  validates :description, length: {maximum: 500}
-  validates :habit_type, inclusion: {in: %w[daily weekly monthly], message: "%<value>s is not a valid type"}
-  validates :frequency, numericality: {only_integer: true}
+  validates :name, presence: true, length: { maximum: 100 }
+  validates :description, length: { maximum: 500 }
+  validates :habit_type, inclusion: { in: %w[daily weekly monthly], message: '%<value>s is not a valid type' }
+  validates :frequency, numericality: { only_integer: true }
   has_many :habit_logs
 
   # GET how many is accomplished today
@@ -11,10 +11,20 @@ class Habit < ApplicationRecord
     habit_logs.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
   end
 
+  def current_logs
+    if habit_type == 'daily'
+      logs_for_today
+    elsif habit_type == 'weekly'
+      logs_for_this_week
+    else
+      logs_for_this_month
+    end
+  end
+
   # GET how many is accomplished this week
   def logs_for_this_week
     date = Time.now
-    week_number = (date.day > 28) ? 4 : (date.day / 7.0).ceil
+    week_number = date.day > 28 ? 4 : (date.day / 7.0).ceil
     range = get_week_range(week_number)
     habit_logs.where(created_at: range, habit_id: id)
   end
