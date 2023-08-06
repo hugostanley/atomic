@@ -6,10 +6,14 @@ export default class extends Controller {
     amount: Number,
     frequency: Number
   }
-  initialize(){
+
+  static targets = ['habitDiv', 'bgDiv']
+  initialize() {
   }
   connect() {
-    console.log(this.amountValue)
-    console.log(this.frequencyValue)
+  }
+
+  fillColor(){
+
   }
 }
