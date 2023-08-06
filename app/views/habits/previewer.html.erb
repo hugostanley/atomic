@@ -13,7 +13,7 @@
     <section id="<%= dom_id(current_user) %>_<%= @mode %>_habits" class="previewer-load flex flex-col gap-2 py-2">
       <% @habits.each do |item| %>
         <% if item.habit_type == @mode %>
-          <%= render partial: 'habit', locals: {habit: item} %>
+          <%= render partial: 'habit', locals: {habit: item, amount: item.current_logs.length} %>
         <% end %>
       <% end %>
     </section>
