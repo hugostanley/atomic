@@ -53,3 +53,7 @@
     transform: translateY(40rem);
   }
 }
+
+.list {
+  max-height: 65vh;
+}
