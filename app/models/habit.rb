@@ -4,7 +4,7 @@ class Habit < ApplicationRecord
   validates :description, length: { maximum: 500 }
   validates :habit_type, inclusion: { in: %w[daily weekly monthly], message: '%<value>s is not a valid type' }
   validates :frequency, numericality: { only_integer: true }
-  has_many :habit_logs
+  has_many :habit_logs, dependent: :destroy
 
   # GET how many is accomplished today
   def logs_for_today
