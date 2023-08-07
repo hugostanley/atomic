@@ -12,7 +12,7 @@
         <% end %>
       </div>
     </section>
-    <%= turbo_frame_tag "habit_list" do %>
+    <%= turbo_frame_tag "habit_list", class: 'list overflow-y-scroll' do %>
       <section id="<%= dom_id(current_user) %>_<%= @mode %>_habits" class="previewer-load flex flex-col gap-2 py-2">
         <% @habits.each do |item| %>
           <% if item.habit_type == @mode %>
