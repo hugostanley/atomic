@@ -7,7 +7,7 @@ export default class extends Controller {
     frequency: Number
   }
 
-  static targets = ['habitDiv', 'bgDiv']
+  static targets = ['habitDiv', 'bgDiv', 'habitBlockMoreBtn', 'deleteBtn']
   initialize() {
   }
   connect() {
@@ -15,5 +15,9 @@ export default class extends Controller {
 
   fillColor(){
 
+  }
+
+  toggleMoreDropdown(e){
+    this.deleteBtnTarget.classList.toggle('hidden')
   }
 }
