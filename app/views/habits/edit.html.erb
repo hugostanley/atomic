@@ -7,9 +7,9 @@
       </div>
     <% end %>
     <section class="flex flex-col gap-2 py-2">
-      <% @habits.each_with_index do |habit, idx| %>
+      <% @habits.each do |habit| %>
         <div id="<%= dom_id(habit) %>_edit" class="flex items-center gap-2">
-          <span><%= idx + 1 %>. <%= habit.name %></span>
+          <span><%= habit.name %></span>
           <%= button_to delete_habit_path(habit.id), method: :delete do %>
             <%= render partial: 'shared/icons/trash', locals: {className: ''} %>
           <% end %>
