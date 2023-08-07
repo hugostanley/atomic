@@ -4,12 +4,22 @@ class HabitsController < ApplicationController
 
   def index; end
 
+  def edit
+    @habits = current_user.habits
+  end
+
   def previewer
     @mode = params[:view]
   end
 
   def new
     @habit = Habit.new
+  end
+
+  def delete_habit
+    @habit = Habit.destroy(params[:id])
+
+    respond_to(&:turbo_stream)
   end
 
   def create
