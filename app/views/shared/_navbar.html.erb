@@ -1,11 +1,10 @@
 <% content_for :nav_bar do %>
-  <div class="w-full flex flex-col justify-between p-4 gap-2">
+  <div class="w-full flex justify-between items-center p-4 gap-2">
     <h3 class="text-sm"><%= Time.now.strftime('%d %B') %></h3>
     <div class="flex rounded-full p-1 border border-slate-300 text-xs gap-1 w-max" data-controller="previewer">
       <% ['daily', 'weekly', 'monthly'].each_with_index do |val, idx| %>
         <%= link_to val.capitalize, previewer_path(val), class: "p-2 rounded-full hover:bg-gray-200", data: {previewer_target: val, action: "previewer#changeIndex", previewer_index_param: idx, turbo_frame: 'home_previewer', turbo_action: 'advance'}  %>
       <% end %>
     </div>
-    <%= link_to "edit list", edit_habits_path  %>
   </div>
 <% end %>
