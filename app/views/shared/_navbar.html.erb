@@ -1,6 +1,11 @@
 <% content_for :nav_bar do %>
-  <div class="w-full flex justify-between items-center p-4 gap-2">
+  <div class="flex w-full justify-between p-4 items-center">
     <h3 class="text-sm"><%= Time.now.strftime('%d %B') %></h3>
+    <%= link_to profile_path do %>
+      <%= render partial: 'shared/icons/user', locals: {className: ''} %>
+    <% end %>
+  </div>
+  <div class="w-full flex justify-end items-center px-4">
     <div class="flex rounded-full p-1 border border-slate-300 text-xs gap-1 w-max" data-controller="previewer">
       <% ['daily', 'weekly', 'monthly'].each_with_index do |val, idx| %>
         <%= link_to val.capitalize, previewer_path(val), class: "p-2 rounded-full hover:bg-gray-200", data: {previewer_target: val, action: "previewer#changeIndex", previewer_index_param: idx, turbo_frame: 'home_previewer', turbo_action: 'advance'}  %>
