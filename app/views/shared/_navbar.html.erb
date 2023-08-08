@@ -8,7 +8,7 @@
   <div class="w-full flex justify-end items-center px-4">
     <div class="flex rounded-full p-1 border border-slate-300 text-xs gap-1 w-max" data-controller="previewer">
       <% ['daily', 'weekly', 'monthly'].each_with_index do |val, idx| %>
-        <%= link_to val.capitalize, previewer_path(val), class: "p-2 rounded-full hover:bg-gray-200", data: {previewer_target: val, action: "previewer#changeIndex", previewer_index_param: idx, turbo_frame: 'home_previewer', turbo_action: 'advance'}  %>
+        <%= link_to val.capitalize, "?view=#{val}", class: "p-2 rounded-full hover:bg-gray-200", data: {previewer_target: val, action: "previewer#changeIndex", previewer_index_param: idx, turbo_frame: 'home_previewer', turbo_action: 'advance'}  %>
       <% end %>
     </div>
   </div>
