@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root 'habits#index'
-  get '/:view', to: 'habits#previewer', defaults: { view: 'daily' }, as: 'previewer'
+  root 'habits#previewer'
+  get '/', to: 'habits#previewer', as: 'previewer'
   get '/habits/edit', to: 'habits#edit', as: 'edit_habits'
-  get '/user/profile', to: 'dashboard#current_user_profile', as: 'profile'
+  get '/profile', to: 'dashboard#current_user_profile', as: 'profile'
+  get 'reports', to: 'habits#habit_reports', as: 'habit_reports'
   post '/habits', to: 'habits#create', as: 'create_habit'
   post '/habit/:id', to: 'habits#log_habit', as: 'log_habit'
   delete '/habit/:id', to: 'habits#delete_habit', as: 'delete_habit'

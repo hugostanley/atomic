@@ -9,7 +9,7 @@ class HabitsController < ApplicationController
   end
 
   def previewer
-    @mode = params[:view]
+    @mode = params[:view] || 'daily'
   end
 
   def new
@@ -49,6 +49,9 @@ class HabitsController < ApplicationController
         format.html { redirect_to previewer_path('daily') }
       end
     end
+  end
+
+  def habit_reports
   end
 
   private
