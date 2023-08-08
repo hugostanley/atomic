@@ -1,7 +1,7 @@
 <div data-controller='new-habit-form'>
   <div class="w-full fixed bottom-0 py-8 px-4 flex items-center justify-center">
     <div class="flex text-sm items-center justify-center gap-10 w-[90%] px-4 h-10 rounded-full bg-zinc-900 text-white relative">
-      <span>Reports</span>
+      <%= link_to "Reports", habit_reports_path, data: {turbo_frame: "_top", action: 'advance'} %>
       <div class="z-10 p-2 rounded-full bg-zinc-900 w-max border border-gray-500 shadow-lg drop-shadow-xl cursor-pointer" data-new-habit-form-target="newHabitBtn" data-action="click->new-habit-form#openForm">
         <%= render partial: 'shared/icons/add', locals: {className: 'fill-white h-9 w-auto'} %>
       </div>
