@@ -1,6 +1,11 @@
 <main class="px-4">
   <%= turbo_frame_tag "home_previewer", class: 'flex flex-col gap-2' do %>
-    <%= render partial: 'previewer_header', locals: {mode: @mode}  %>
+    <%= link_to previewer_path, data: {turbo_action: 'advance'} do %>
+      <div class="w-full flex items-center">
+        <%= render partial: 'shared/icons/chevron_left', locals: {className: 'w-6 h-auto stroke-2'} %>
+        <span class="text-4xl font-bold previewer-load">Reports</span>
+      </div>
+    <% end %>
     <%= turbo_frame_tag "habit_list", class: '' do %>
       <div class="previewer-load">
         <% if @mode == 'daily' %>
