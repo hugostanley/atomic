@@ -1,6 +1,6 @@
 <main class="px-4">
   <%= turbo_frame_tag "home_previewer" do %>
-    <%= link_to previewer_path do %>
+    <%= link_to previewer_path, data: {turbo_action: 'advance'} do %>
       <div class="w-full flex items-center">
         <%= render partial: 'shared/icons/chevron_left', locals: {className: 'w-6 h-auto stroke-2'} %>
         <span class="text-4xl font-bold previewer-load">Back</span>
