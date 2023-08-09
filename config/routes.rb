@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'habits#previewer'
   get '/', to: 'habits#previewer', as: 'previewer'
+  patch '/move/habit/:id', to: 'habits#move'
   get '/habits/edit', to: 'habits#edit', as: 'edit_habits'
   get '/profile', to: 'dashboard#current_user_profile', as: 'profile'
   get 'reports', to: 'habits#habit_reports', as: 'habit_reports'
