@@ -4,10 +4,11 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['daily', 'weekly', 'monthly']
   initialize(){
-    let pagePreview = window.location.pathname.split('/')[1] 
-    if(pagePreview == 'daily' || pagePreview == ''){
+    const urlParams = new URLSearchParams(window.location.search)
+    const viewParam = urlParams.get('view')
+    if(viewParam == 'daily' || viewParam == ''){
       this.index = 0
-    } else if(pagePreview == 'weekly') {
+    } else if(viewParam == 'weekly') {
       this.index = 1
     } else {
       this.index = 2
