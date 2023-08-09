@@ -6,7 +6,8 @@ export default class extends Controller {
   initialize(){
     const urlParams = new URLSearchParams(window.location.search)
     const viewParam = urlParams.get('view')
-    if(viewParam == 'daily' || viewParam == ''){
+    console.log(viewParam)
+    if(viewParam == 'daily' || !viewParam ){
       this.index = 0
     } else if(viewParam == 'weekly') {
       this.index = 1
