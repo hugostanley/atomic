@@ -2,7 +2,7 @@
   <%= turbo_frame_tag "home_previewer", class: 'flex flex-col gap-2' do %>
     <%= render partial: 'previewer_header', locals: {mode: @mode}  %>
     <%= turbo_frame_tag "habit_list", class: 'list overflow-y-scroll' do %>
-      <section id="<%= dom_id(current_user) %>_<%= @mode %>_habits" class="previewer-load flex flex-col gap-2 py-2">
+      <section id="<%= dom_id(current_user) %>_<%= @mode %>_habits" class="previewer-load flex flex-col gap-2 py-2" data-controller="drag-list">
         <% @habits.each do |item| %>
           <% if item.habit_type == @mode %>
             <%= render partial: 'habit', locals: {habit: item, amount: item.current_logs.length} %>
