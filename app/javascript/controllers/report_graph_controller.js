@@ -7,7 +7,6 @@ export default class extends Controller {
   }
 
   connect() {
-    console.log(this.percentageValue)
     if (this.percentageValue < 25) {
       this.element.style.backgroundColor = 'rgb(187 247 208'
       return
