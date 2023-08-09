@@ -8,9 +8,7 @@ class HabitsController < ApplicationController
     @habits = current_user.habits
   end
 
-  def previewer
-    @mode = params[:view] || 'daily'
-  end
+  def previewer; end
 
   def new
     @habit = Habit.new
@@ -52,6 +50,7 @@ class HabitsController < ApplicationController
   end
 
   def habit_reports
+    pp HabitLog.get_daily_report current_user.id
   end
 
   private
@@ -59,6 +58,7 @@ class HabitsController < ApplicationController
   def instantiate_data
     @date_today = Time.now
     @habits = Habit.where(user_id: current_user.id)
+    @mode = params[:view] || 'daily'
   end
 
   def new_habits_params
