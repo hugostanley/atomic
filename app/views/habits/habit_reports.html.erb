@@ -1,1 +1,10 @@
-from reports
+<main class="px-4">
+  <%= turbo_frame_tag "home_previewer", class: 'flex flex-col gap-2' do %>
+    <%= render partial: 'previewer_header', locals: {mode: @mode}  %>
+    <%= turbo_frame_tag "habit_list", class: '' do %>
+      <div class="previewer-load">
+        reports
+      </div>
+    <% end %>
+  <% end %>
+</main>
