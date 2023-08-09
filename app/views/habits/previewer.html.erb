@@ -1,17 +1,6 @@
-<%= render 'shared/navbar' %>
 <main class="px-4">
   <%= turbo_frame_tag "home_previewer", class: 'flex flex-col gap-2' do %>
-    <section>
-      <div class="flex justify-between w-full items-center previewer-load">
-        <% if @mode == 'daily' %>
-            <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%A') %></h1>
-        <% elsif @mode == 'weekly' %>
-          <h1 class="text-4xl font-bold previewer-load">Week <%= get_week_number %></h1>
-        <% else %>
-          <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%B') %></h1>
-        <% end %>
-      </div>
-    </section>
+    <%= render partial: 'previewer_header', locals: {mode: @mode}  %>
     <%= turbo_frame_tag "habit_list", class: 'list overflow-y-scroll' do %>
       <section id="<%= dom_id(current_user) %>_<%= @mode %>_habits" class="previewer-load flex flex-col gap-2 py-2">
         <% @habits.each do |item| %>
@@ -34,5 +23,3 @@
     </section>
   <% end %>
 </main>
-
-<%= render partial: 'new_habit' %>
