@@ -1,0 +1,11 @@
+<section>
+  <div class="flex justify-between w-full items-center previewer-load">
+    <% if mode == 'daily' %>
+        <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%A') %></h1>
+    <% elsif mode == 'weekly' %>
+      <h1 class="text-4xl font-bold previewer-load">Week <%= get_week_number %></h1>
+    <% else %>
+      <h1 class="text-4xl font-bold previewer-load"><%= Time.now.strftime('%B') %></h1>
+    <% end %>
+  </div>
+</section>
