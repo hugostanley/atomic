@@ -8,16 +8,17 @@ export default class extends Controller {
   }
 
   static targets = ['habitDiv', 'bgDiv', 'habitBlockMoreBtn', 'deleteBtn']
+
   initialize() {
   }
+
   connect() {
+    let percentage = (this.amountValue / this.frequencyValue) * 100
+    this.habitDivTarget.style.background = `linear-gradient(90deg, rgb(74 222 128) ${percentage}%, rgb(255 255 255) ${percentage}%)`
   }
 
   fillColor(){
 
   }
 
-  toggleMoreDropdown(e){
-    this.deleteBtnTarget.classList.toggle('hidden')
-  }
 }

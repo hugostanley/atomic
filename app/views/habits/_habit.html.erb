@@ -1,7 +1,7 @@
 <div id="user_<%= habit.user_id %>_habit_<%= habit.id %>" class="flex w-full items-center gap-2">
-  <%= button_to log_habit_path(habit.id), data: {controller: 'authenticity habit-block', habit_block_amount_value: amount, habit_block_frequency_value: habit.frequency, action: 'habit-block#fillColor'}, form_class: 'grow ', class: 'w-full' do %>
+  <%= button_to log_habit_path(habit.id), data: {controller: 'authenticity habit-block', habit_block_amount_value: amount, habit_block_frequency_value: habit.frequency}, form_class: 'grow ', class: 'w-full' do %>
     <div class="p-4 w-full border border-slate-300 rounded-lg shadow-sm flex justify-between relative" data-habit-block-target="habitDiv">
-      <span class="font-medium text-xl z-50 text-left"><%= habit.name %></span>
+      <span class="font-medium z-50 text-left"><%= habit.name %></span>
       <div class="z-50 text-right">
         <span class=""><%= amount %> / <%= habit.frequency %></span>
         <span class="">
@@ -17,4 +17,3 @@
     </div>
   <% end %>
 </div>
-<%= button_to "Delete", delete_habit_path(habit.id), method: :delete, data: {controller: 'habit-block', 'habit-block-target': 'deleteBtn'}, class: 'hidden' %>
