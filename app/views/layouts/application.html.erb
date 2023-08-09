@@ -16,8 +16,10 @@
 
   <body class="text-zinc-950">
     <header>
-      <%= yield :nav_bar %>
+      <%= render partial: 'shared/navbar' %>
     </header>
     <%= yield %>
+    <%= render partial: 'shared/bottom_navbar' %>
+    
   </body>
 </html>
