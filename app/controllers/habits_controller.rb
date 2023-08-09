@@ -31,6 +31,12 @@ class HabitsController < ApplicationController
     end
   end
 
+  def move
+    @habit = Habit.find(params[:id])
+    @habit.insert_at(params[:position].to_i)
+    head :ok
+  end
+
   def log_habit
     @habit = Habit.find_by(id: params[:id])
     @habit_log = HabitLog.new(user_id: @habit.user_id, habit_id: @habit.id)
