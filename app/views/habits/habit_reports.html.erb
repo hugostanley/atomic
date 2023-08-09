@@ -3,7 +3,11 @@
     <%= render partial: 'previewer_header', locals: {mode: @mode}  %>
     <%= turbo_frame_tag "habit_list", class: '' do %>
       <div class="previewer-load">
-        reports
+        <% if @mode == 'daily' %>
+          <span class="font-medium text-lg"><%= HabitLog.get_daily_report(current_user.id)[:report_percentage] %>% completion today</span>
+        <% elsif @mode == 'weekly' %>
+          <span class="font-medium text-lg"><%= HabitLog.get_weekly_report(current_user.id, get_week_range(get_week_number))[:report_percentage] %>% completion this week</span>
+        <% end %>
       </div>
     <% end %>
   <% end %>
