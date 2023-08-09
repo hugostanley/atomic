@@ -1,4 +1,4 @@
-<% content_for :nav_bar do %>
+<% if user_signed_in? %>
   <div class="flex w-full justify-between p-4 items-center">
     <h3 class="text-sm"><%= Time.now.strftime('%d %B') %></h3>
     <%= link_to profile_path do %>
