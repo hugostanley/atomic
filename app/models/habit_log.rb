@@ -6,10 +6,14 @@ class HabitLog < ApplicationRecord
 
   # create a callback to check if the frequency per day is not exceeded yet
   def self.get_daily_report(user_id, date = Time.zone.now)
+    logs = HabitLog
+           .select('habit_logs.id as habit_log_id, habits.id as habit_id, atomic_users.id as user_id, habit_logs.created_at')
+           .joins(:habit, :user)
+           .where(habit_logs: { created_at: date.beginning_of_day..date.end_of_day }, habits: { habit_type: 'daily' }, atomic_users: {id: user_id})
+    total_logs = logs.length
     habits = Habit.where(user_id:,
-                         habit_type: 'daily').includes(:habit_logs).where(created_at: date.beginning_of_day..date.end_of_day)
+                         habit_type: 'daily')
     total_frequency = habits.reduce(0) { |sum, habit| sum + habit.frequency }
-    total_logs = habits.reduce(0) { |sum, habit| sum + habit.habit_logs.length }
     { total_frequency:, total_logs:, report_percentage: (total_logs / total_frequency.to_f * 100).round(2) }
   end
 
