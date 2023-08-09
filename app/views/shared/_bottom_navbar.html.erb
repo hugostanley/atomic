@@ -1,0 +1,32 @@
+<% if user_signed_in? %>
+   <div data-controller='new-habit-form'>
+     <div class="w-full fixed bottom-0 py-8 px-4 flex items-center justify-center">
+       <div class="flex text-sm items-center justify-center gap-10 w-[90%] px-4 h-10 rounded-full bg-zinc-900 text-white relative">
+         <%= link_to "Reports", habit_reports_path, data: {turbo_frame: "habit_list", turbo_action: "advance"} %>
+         <div class="z-10 p-2 rounded-full bg-zinc-900 w-max border border-gray-500 shadow-lg drop-shadow-xl cursor-pointer" data-new-habit-form-target="newHabitBtn" data-action="click->new-habit-form#openForm">
+           <%= render partial: 'shared/icons/add', locals: {className: 'fill-white h-9 w-auto'} %>
+         </div>
+         <%= link_to "Edit", edit_habits_path, data: {turbo_frame: "home_previewer", turbo_action: 'advance'} %>
+       </div>
+     </div>
+     <div data-new-habit-form-target="bgOverlay" class="z-20 fixed inset-0 bg-gray-300 bg-opacity-75 flex items-end hidden" data-action="click->new-habit-form#closeForm">
+       <div class="w-full rounded-t-[1.5rem] h-[50%] bg-white shadow-xl p-4 open-form" data-new-habit-form-target="popUpForm" >
+         <div class="w-full">
+           <%= form_with url: create_habit_path, model: Habit.new, method: :post, data: {new_habit_form_target: 'form', action: 'turbo:submit-start->new-habit-form#reset'} do |f| %>
+             <%= f.text_field :name, class: 'text-lg w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Habit name' %>
+             <%= f.text_area :description, class: 'w-full border-none outline-none border-transparent focus:border-transparent focus:ring-0 font-medium', placeholder: 'Description' %>
+             <div class="flex w-full gap-2">
+               <%= f.number_field :frequency, placeholder: 'Frequency', class: 'rounded-xl border-gray-200' %>
+               <%= f.select :habit_type, [['Daily', 'daily'], ['Weekly', 'weekly'], ['Monthly', 'monthly']], {}, {class: 'border-gray-200 outline-none focus:ring-0 rounded-xl'} %>
+             </div>
+             <%= f.hidden_field :user_id, value: current_user.id %>
+             <button type="submit" class="p-2 rounded-full bg-zinc-900 w-max shadow-lg drop-shadow-xl cursor-pointer fixed bottom-8 right-8" data-new-habit-form-target="submitBtn">
+               <%= render partial: 'shared/icons/arrow_up', locals: {className: 'fill-white'} %>
+             </button>
+           <% end %>
+         </div>
+
+       </div>
+     </div>
+   </div>
+<% end %>
