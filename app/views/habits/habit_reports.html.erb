@@ -14,6 +14,15 @@
           <span class="font-medium text-lg"><%= HabitLog.get_weekly_report(current_user.id, get_week_range(get_week_number))[:report_percentage] %>% completion this week</span>
         <% end %>
       </div>
+      <section>
+        <div class="w-full rounded-lg flex flex-wrap gap-1">
+          <% daily_reports_this_month.each do |n| %>
+            <div class='h-9 w-9 min-w-24 rounded-xl' data-controller="report-graph" data-report-graph-percentage-value="<%= n[:report_percentage] %>">
+
+            </div>
+          <% end %>
+        </div>
+      </section>
     <% end %>
   <% end %>
 </main>
