@@ -7,18 +7,20 @@ export default class extends Controller {
   }
 
   connect() {
-    if (this.percentageValue < 25) {
-      this.element.style.backgroundColor = 'rgb(187 247 208'
+    if (this.percentageValue < 20) {
+      this.element.style.backgroundColor = '#EBEDF0'
       return
-    } else if (this.percentageValue < 50) {
-      this.element.style.backgroundColor = 'rgb(22 163 74)'
+    } else if (this.percentageValue < 40) {
+      this.element.style.backgroundColor = '#9be9a8'
       return
-    } else if (this.percentageValue < 75) {
-      this.element.style.backgroundColor = 'rgb(22 101 52)'
+    } else if (this.percentageValue < 60) {
+      this.element.style.backgroundColor = '#30c463'
       return
-    } else if(this.percentageValue <= 100) {
-      this.element.style.backgroundColor = 'rgb(5 46 22)'
+    } else if(this.percentageValue < 80) {
+      this.element.style.backgroundColor = '#30a14e'
       return
+    } else if(this.percentageValue <= 100){
+      this.element.style.backgroundColor = '#216e39'
     }
   }
 
