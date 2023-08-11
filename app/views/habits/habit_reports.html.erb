@@ -7,7 +7,7 @@
       </div>
     <% end %>
     <%= turbo_frame_tag "habit_list", class: '' do %>
-      <div class="previewer-load">
+      <div class="previewer-load flex w-full justify-center">
         <% if @mode == 'daily' %>
           <span class="font-medium text-lg"><%= HabitLog.get_daily_report(current_user.id)[:report_percentage] %>% completion today</span>
         <% elsif @mode == 'weekly' %>
@@ -15,11 +15,10 @@
         <% end %>
       </div>
       <% if @mode == 'daily' %>
-        <section>
+        <section class="mt-10">
           <div class="w-full rounded-lg flex flex-wrap gap-1">
-            <% daily_reports_this_month.each do |n| %>
-              <div class='h-9 w-9 min-w-24 rounded-xl' data-controller="report-graph" data-report-graph-percentage-value="<%= n[:report_percentage] %>">
-
+            <% daily_reports_this_month.each_with_index do |n, idx| %>
+              <div class='relative h-9 w-9 min-w-24 rounded-xl' data-controller="report-graph" data-report-graph-percentage-value="<%= n[:report_percentage] %>">
               </div>
             <% end %>
           </div>
