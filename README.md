@@ -1,24 +1,17 @@
-# README
+# Atomic
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+*NOTE: This is best accessed through your mobile phone. If the load up is taking forever, that is because I am using the free tier of Render (hosting) and Render spins down apps with inactivity.*
 
-Things you may want to cover:
+Atomic is a habit tracker inspired by the book Atomic habits. Tracking habits should be the easiest task to do, 
+it should not even feel like a task.
 
-* Ruby version
+This app's main purpose is ease of use.
 
-* System dependencies
+## Tech stack
+* [Ruby on Rails](https://rubyonrails.org/) - Full stack framework with Ruby language
+* [Hotwire](https://hotwired.dev/) - Default SPA Front end framework for Rails 7
+* [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS Framework
+* [Render](render.com) - Web service deployment
+* [Neon](https://neon.tech/) - PostgreSQL deployment
+* PostgreSQL - Database
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
