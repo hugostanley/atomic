@@ -57,7 +57,7 @@ class HabitsController < ApplicationController
 
   def habit_reports
     @date = params[:date] ? Time.parse(params[:date]) : Time.now
-    @report = HabitLog.get_daily_report(current_user.id, @date)
+    @report_percentage = params[:percentage] || HabitLog.get_daily_report(current_user.id, @date)[:report_percentage]
   end
 
   private
