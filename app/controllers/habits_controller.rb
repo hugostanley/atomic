@@ -1,16 +1,14 @@
 class HabitsController < ApplicationController
   before_action :authenticate_user!
-  before_action :instantiate_data, only: [:habit_reports, :previewer]
+  before_action :instantiate_data, only: %i[habit_reports previewer]
 
-  def index
-  end
+  def index; end
 
   def edit
     @habits = current_user.habits
   end
 
-  def previewer
-  end
+  def previewer; end
 
   def new
     @habit = Habit.new
@@ -52,19 +50,21 @@ class HabitsController < ApplicationController
         end
 
       else
-        format.html { redirect_to previewer_path("daily") }
+        format.html { redirect_to previewer_path('daily') }
       end
     end
   end
 
   def habit_reports
+    @date = params[:date] ? Time.parse(params[:date]) : Time.now
+    @report = HabitLog.get_daily_report(current_user.id, @date)
   end
 
   private
 
   def instantiate_data
     @habits = Habit.where(user_id: current_user.id)
-    @mode = params[:view] || "daily"
+    @mode = params[:view] || 'daily'
   end
 
   def new_habits_params
