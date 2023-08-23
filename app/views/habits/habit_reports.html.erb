@@ -1,3 +1,4 @@
+<% reports = daily_reports_this_month %>
 <main class="px-4">
   <%= turbo_frame_tag "home_previewer", class: 'flex flex-col gap-2' do %>
     <%= link_to previewer_path, data: {turbo_action: 'advance'} do %>
@@ -9,18 +10,22 @@
     <%= turbo_frame_tag "habit_list", class: '' do %>
       <div class="previewer-load flex w-full justify-center">
         <% if @mode == 'daily' %>
-          <span class="font-medium text-lg"><%= HabitLog.get_daily_report(current_user.id)[:report_percentage] %>% completion today</span>
+          <span class="font-medium text-lg"><%= @report[:report_percentage] %>% completion, <%= @date.strftime('%d %B') %></span>
         <% elsif @mode == 'weekly' %>
           <span class="font-medium text-lg"><%= HabitLog.get_weekly_report(current_user.id, get_week_range(get_week_number))[:report_percentage] %>% completion this week</span>
         <% end %>
       </div>
       <% if @mode == 'daily' %>
-        <section class="mt-10">
+        <section class="mt-10 flex flex-col gap-2">
           <div class="w-full rounded-lg flex flex-wrap gap-1">
-            <% daily_reports_this_month.each_with_index do |n, idx| %>
-              <div class='relative h-9 w-9 min-w-24 rounded-xl' data-controller="report-graph" data-report-graph-percentage-value="<%= n[:report_percentage] %>">
-              </div>
+            <% reports.each_with_index do |n, idx| %>
+              <%= link_to habit_reports_path(date: n[:date]) do %>
+                <div class='relative h-9 w-9 min-w-24 rounded-xl' data-controller="report-graph" data-report-graph-percentage-value="<%= n[:report_percentage] %>">
+                </div>
+              <% end %>
             <% end %>
+          </div>
+          <div>
           </div>
         </section>
       <% end %>
